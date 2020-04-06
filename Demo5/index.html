@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo5</title>
+</head>
+<body>
+	<style>
+		body {
+		  font-family: "Roboto", sans-serif;
+		  font-weight: 700;
+		  padding: 0;
+		  margin: 0;
+		}
+
+		.spacer {
+		  background-color: #cd58eb;
+		  height: 100vh;
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
+		  color: white;
+		  font-size: 2em;
+		}
+
+
+		.wrapper {
+		  width: 300px;
+		  height: 300px;
+		  position: relative;
+		  margin: 60px auto;
+		}
+
+		.parent,
+		.child {
+		  position: absolute;
+		  border-radius: 8px;
+		}
+
+		.parent {
+		  width: 100%;
+		  height: 100%;
+		  background: black;
+		}
+
+		.child {
+		  width: 200px;
+		  height: 100px;
+		  background: #42a6e0;
+		  right: -50px;
+		  bottom: -20px;
+		}	
+	</style>	
+
+
+	<div class="spacer">Just a spacer</div>
+	<div class="wrapper">
+	<div class="parent">
+	<div class="child"></div>
+	</div>
+	</div>
+
+	<div class="wrapper">
+	<div class="parent">
+	<div class="child"></div>
+	</div>
+	</div>
+
+	<div class="wrapper">
+	<div class="parent">
+	<div class="child"></div>
+	</div>
+	</div>
+
+	<div class="wrapper">
+		<div class="parent">
+			<div class="child"></div>
+		</div>
+	</div>
+
+	<div class="spacer end">Just a spacer</div>
+	
+
+  <script src="../dependencias/gsap.min.js"></script>
+  <script src="../dependencias/ScrollMagic.min.js"></script>
+  <script src="../dependencias/animation.gsap.min.js"></script>
+  <script src="../dependencias/debug.addIndicators.min.js"></script>
+
+  <script>
+  	const controller = new ScrollMagic.Controller();
+  	const wrappers = document.querySelectorAll('.wrapper')
+
+  	wrappers.forEach(wrapper =>{
+  		const tl = gsap.timeline();
+  		const child = wrapper.querySelector('.child')
+  		tl.to(child, 1, {
+  			y: -180,
+  			ease: Linear.easeNone
+  		})
+
+  		const scene = new ScrollMagic.Scene({
+  			triggerElement: wrapper,
+  			triggerHook: 0.4,
+  			duration: '100%'  
+  		})
+  			.setTween(tl)
+  			.addIndicators({
+		      colorTrigger: "black",
+		      colorStart: "black",
+		      colorEnd: "black",
+		      indent: 10
+		    })
+		    .addTo(controller)
+  	})
+
+  </script>
+</body>
+</html>
